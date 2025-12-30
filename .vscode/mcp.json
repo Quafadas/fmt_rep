@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "fmt_rep-metals": {
+      "url": "http://localhost:58948/sse",
+      "type": "sse"
+    }
+  }
+}
