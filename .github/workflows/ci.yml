@@ -21,5 +21,9 @@ jobs:
         with:
           fetch-depth: 0
           fetch-tags: true
+
+      - name: Set up Mill
+        run: chmod +x ./mill
+        
       - name: formatCheck
         run: ./mill mill.scalalib.scalafmt.ScalafmtModule/checkFormatAll __.sources
