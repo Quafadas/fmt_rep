@@ -14,4 +14,6 @@
  * limitations under the License.
  */
 
-@main def hi = ???
+@main def hi =
+  val x =  """badly formatted string"""
+  ???
