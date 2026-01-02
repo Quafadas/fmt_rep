@@ -1,5 +1,5 @@
 //| mill-version: 1.0.6
-//| mill-jvm-version: 25
+//| mill-jvm-version: 24
 package build
 
 import mill.*, scalalib.*
