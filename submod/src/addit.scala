@@ -5,9 +5,9 @@ object addit:
 
   testing {
     class PluslySuite extends munit.FunSuite:
-          test("plusly") {
-            assertEquals(plusly(20, 23), 43)
-          }
+      test("plusly") {
+        assertEquals(plusly(20, 23), 43)
+      }
   }
 end addit
 
