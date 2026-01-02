@@ -1,0 +1,56 @@
+// mill mill.scalalib.scalafmt/
+package build.submod
+
+import mill.*, scalalib.*
+
+object `package` extends ScalaModule:
+	def scalaVersion = "3.7.4"
+
+	def mvnDeps = super.mvnDeps() ++ Seq(
+		mvn"org.scalameta::munit::1.1.1"
+	)
+
+	def generatedSources = Task {
+		os.write(
+			Task.dest / "package.scala",
+			"""package testing
+				|import scala.annotation.nowarn
+				|package object testing:
+				|	inline val isTesting = false
+				|	@nowarn inline def apply[A](a: A): Unit = if(isTesting) a
+				|
+			""".stripMargin
+		)
+		Seq(PathRef(Task.dest))
+	}
+
+	def sources = Task.Sources("src")
+
+	object inlineTests extends ScalaModule with TestModule.Munit:
+		def scalaVersion = "3.7.4"
+
+		def mvnDeps = super.mvnDeps() ++ Seq(
+			mvn"org.scalameta::munit::1.1.1"
+		)
+
+		def sources = build.submod.sources()
+
+		def generatedSources = Task {
+			os.write(
+				Task.dest / "package.scala",
+				"""package testing
+    			|import scala.annotation.nowarn
+					|package object testing:
+					|	inline val isTesting = true
+     			|	@nowarn inline def apply[A](a: A) = if(isTesting) a
+					|
+				""".stripMargin
+			)
+			Seq(PathRef(Task.dest))
+		}
+
+
+
+	end inlineTests
+
+end `package`

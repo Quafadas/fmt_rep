@@ -1,8 +1,0 @@
-// mill mill.scalalib.scalafmt/
-package build.sub
-
-import mill.*, scalalib.*
-
-object `package` extends ScalaModule {
-	def scalaVersion = "3.7.4"
-}
