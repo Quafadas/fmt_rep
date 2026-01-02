@@ -1,7 +1,5 @@
 package submod
 
-import testing.testing
-
 object addit:
   def plusly(a: Int, b: Int) = a + b
 

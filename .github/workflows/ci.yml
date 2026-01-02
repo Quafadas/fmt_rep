@@ -23,7 +23,10 @@ jobs:
           fetch-tags: true
 
       - name: PublishLocal
-        run: ./mill submod.publishLocal
+        run: ./mill submod.compile
+
+      - name: PublishLocal
+        run: ./mill submod.run
 
       - name: test
         run: ./mill submod.inlineTests

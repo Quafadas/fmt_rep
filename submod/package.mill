@@ -11,13 +11,14 @@ object `package` extends ScalaModule:
 	)
 
 	def generatedSources = Task {
+		os.write(Task.dest / "testing.scala", "private def blank = ()")
+
 		os.write(
 			Task.dest / "package.scala",
-			"""package testing
+			"""
 				|import scala.annotation.nowarn
 				|package object testing:
-				|	inline val isTesting = false
-				|	@nowarn inline def apply[A](a: A): Unit = if(isTesting) a
+				|	@nowarn inline def apply[A](a: A): Unit = if(false) a
 				|
 			""".stripMargin
 		)
@@ -36,13 +37,14 @@ object `package` extends ScalaModule:
 		def sources = build.submod.sources()
 
 		def generatedSources = Task {
+			os.write(Task.dest / "testing.scala", "private def blank = ()")
 			os.write(
 				Task.dest / "package.scala",
-				"""package testing
-    			|import scala.annotation.nowarn
+				"""
+					|import scala.annotation.nowarn
 					|package object testing:
 					|	inline val isTesting = true
-     			|	@nowarn inline def apply[A](a: A) = if(isTesting) a
+					|	@nowarn inline def apply[A](a: A) = if(true) a
 					|
 				""".stripMargin
 			)
